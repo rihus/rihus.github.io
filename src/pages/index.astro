@@ -1,0 +1,244 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import PubItem from '../components/PubItem.astro';
+import { getProfile, getPublications, getCollection, render } from '../lib/content';
+
+const profile = await getProfile();
+const p = profile.data;
+const { Content } = await render(profile);
+
+const pubs = await getPublications();
+const selected = pubs.filter((x) => x.data.firstAuthor && x.data.topic === 'imaging').slice(0, 3);
+const research = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+
+const links = [
+  p.links.linkedin && { href: p.links.linkedin, label: 'LinkedIn', icon: 'linkedin' as const },
+  p.links.scholar && { href: p.links.scholar, label: 'Google Scholar', icon: 'scholar' as const },
+  p.links.orcid && { href: p.links.orcid, label: 'ORCID', icon: 'orcid' as const },
+  p.links.github && { href: p.links.github, label: 'GitHub', icon: 'github' as const },
+].filter(Boolean) as { href: string; label: string; icon: 'linkedin' | 'scholar' | 'orcid' | 'github' }[];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: p.name.replace(/,\s*PhD$/, ''),
+    honorificSuffix: 'PhD',
+    jobTitle: p.title,
+    description: p.seoDescription,
+    email: `mailto:${p.email}`,
+    url: Astro.site?.toString(),
+    image: new URL(p.photo, Astro.site).toString(),
+    knowsAbout: p.expertise,
+    worksFor: p.affiliation ? { '@type': 'Organization', name: p.affiliation } : undefined,
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Parma' },
+    sameAs: Object.values(p.links).filter(Boolean),
+  },
+};
+---
+
+<Base type="profile" jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">{p.title}</p>
+        <h1>{p.name}</h1>
+        {p.subtitle && <p class="subtitle">{p.subtitle}</p>}
+        <div class="prose summary"><Content /></div>
+        <div class="actions">
+          <a class="btn btn-primary" href={`mailto:${p.email}`}><Icon name="email" />Get in touch</a>
+          <a class="btn" href="/cv/"><Icon name="file" />View CV</a>
+        </div>
+        <ul class="social" aria-label="Profiles">
+          {
+            links.map((l) => (
+              <li>
+                <a href={l.href} rel="me noopener" class="social-link">
+                  <Icon name={l.icon} />
+                  <span>{l.label}</span>
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href={`mailto:${p.email}`} class="social-link"><Icon name="email" /><span>{p.email}</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="hero-photo">
+        <img src={p.photo} alt={p.photoAlt} width="320" height="320" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>Core expertise</h2>
+    <ul class="expertise grid grid-2">
+      {p.expertise.map((e) => <li class="card">{e}</li>)}
+    </ul>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <h2>Research</h2>
+      <a href="/research/">All research areas →</a>
+    </div>
+    <div class="grid grid-3">
+      {
+        research.slice(0, 3).map((r) => (
+          <a class="card research-card" href={`/research/#${r.id}`}>
+            <h3>{r.data.title}</h3>
+            <p class="muted">{r.data.summary}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container last">
+    <div class="section-head">
+      <h2>Selected publications</h2>
+      <a href="/publications/">All {pubs.length} publications →</a>
+    </div>
+    <ol class="pub-list">
+      {selected.map((pub) => <PubItem pub={pub} />)}
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(60rem 30rem at 85% -10%, var(--accent-soft), transparent 60%),
+      var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    display: grid;
+    gap: 2rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  @media (min-width: 860px) {
+    .hero-inner {
+      grid-template-columns: minmax(0, 1fr) 18rem;
+      align-items: center;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+  .eyebrow {
+    margin: 0 0 0.25rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+  .subtitle {
+    margin: 0 0 1.25rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .summary {
+    margin-bottom: 1.5rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .social-link:hover {
+    color: var(--accent);
+  }
+  .social-link :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .hero-photo {
+    order: -1;
+    justify-self: start;
+  }
+  @media (min-width: 860px) {
+    .hero-photo {
+      order: 0;
+      justify-self: end;
+    }
+  }
+  .hero-photo img {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: var(--shadow);
+  }
+  @media (min-width: 860px) {
+    .hero-photo img {
+      width: 16rem;
+      height: 16rem;
+    }
+  }
+  .expertise {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .expertise li {
+    font-weight: 600;
+    border-left: 4px solid var(--accent);
+  }
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+  }
+  .section-head a {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .research-card {
+    color: inherit;
+    text-decoration: none;
+  }
+  .research-card:hover {
+    border-color: var(--accent);
+  }
+  .research-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  .research-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .last {
+    padding-bottom: 4rem;
+  }
+</style>

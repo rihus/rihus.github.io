@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getOrdered } from '../lib/content';
+
+const projects = await getOrdered('projects');
+---
+
+<Base title="Projects" description="Software projects by Riaz Hussain, PhD: Pulseq starter sequences, a low-field MRI protocol translator, a xenon MRI lab operations app and an MRI montage tool.">
+  <div class="container page">
+    <h1>Projects</h1>
+    <p class="page-intro">
+      Software I have built to support MRI research. Some repositories are private; links will be
+      added as they become public.
+    </p>
+    <div class="grid grid-2">
+      {
+        projects.map((pr) => (
+          <article class="card project" id={pr.id}>
+            <h2>{pr.data.name}</h2>
+            {pr.data.status && <p class="status">{pr.data.status}</p>}
+            <p>{pr.data.description}</p>
+            {pr.data.tags.length > 0 && (
+              <ul class="chips" aria-label="Tags">
+                {pr.data.tags.map((t) => <li class="chip">{t}</li>)}
+              </ul>
+            )}
+            <div class="project-links">
+              {pr.data.repo ? (
+                <a class="btn" href={pr.data.repo} rel="noopener"><Icon name="github" />Repository</a>
+              ) : (
+                <span class="muted private">Repository private / coming soon</span>
+              )}
+              {pr.data.links.map((l) => (
+                <a class="btn" href={l.url} rel="noopener"><Icon name="external" />{l.label}</a>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .project h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  .project p {
+    margin: 0;
+  }
+  .status {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .project-links {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .private {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+</style>

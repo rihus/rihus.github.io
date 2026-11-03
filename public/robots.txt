@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rihus.github.io/sitemap-index.xml

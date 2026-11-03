@@ -1,0 +1,43 @@
+# ─────────────────────────────────────────────────────────────
+# WORK EXPERIENCE  (newest first — the order here is the order on the page)
+# Each entry needs a unique "id". "highlights" is an optional list of bullet points.
+# ─────────────────────────────────────────────────────────────
+- id: uab
+  role: Research Scientist
+  organization: University of Alabama at Birmingham — Center for Lung Analytics and Imaging Research (CLAIR), Division of Pulmonary, Allergy and Critical Care Medicine
+  location: Birmingham, AL, USA
+  start: "2026"
+  end: Present
+  highlights: []  # TODO: add 2–4 bullet points (responsibilities / achievements) — not listed in the CV
+
+- id: cchmc
+  role: Research Fellow
+  organization: Cincinnati Children's Hospital Medical Center
+  location: Cincinnati, OH, USA
+  start: "2022"
+  end: "2026"
+  highlights: []  # TODO: add bullet points — not listed in the CV
+
+- id: mario-negri
+  role: Researcher
+  organization: Mario Negri Institute for Pharmacological Research
+  location: Milan, Italy
+  start: "2021"
+  end: "2022"
+  highlights: []  # TODO: add bullet points — not listed in the CV
+
+- id: pavia
+  role: Postdoctoral Researcher
+  organization: University of Pavia
+  location: Pavia, Italy
+  start: "2018"
+  end: "2020"
+  highlights: []  # TODO: add bullet points — not listed in the CV
+
+- id: pinstech
+  role: Research Scientist (Adjunct)
+  organization: Physics Division, PINSTECH
+  location: Islamabad, Pakistan
+  start: "2012"
+  end: "2015"
+  highlights: []  # TODO: add bullet points — not listed in the CV

@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+# EDUCATION  (newest first)
+# ─────────────────────────────────────────────────────────────
+- id: phd
+  degree: Ph.D.
+  institution: Department of Mathematical, Physical and Computer Sciences, University of Parma
+  location: Parma, Italy
+  start: "2015"
+  end: "2019"
+  details:
+    - "Thesis: Spin Spectroscopy of Materials for Quantum Information Processing, Data Storage and Energy Conversion"
+    - With Doctor Europaeus Certificate
+
+- id: mphil
+  degree: M.Phil.
+  institution: Department of Physics & Applied Mathematics, Pakistan Institute of Engineering and Applied Sciences (PIEAS)
+  location: Islamabad, Pakistan
+  start: "2010"
+  end: "2012"
+  details:
+    - "Thesis: Monte Carlo-based Geant4 simulation for the gamma radiation spectrometry of compound semiconductor detectors"
+
+- id: msc
+  degree: M.Sc. in Physics
+  institution: Department of Physics, University of Gujrat
+  location: Gujrat, Pakistan
+  start: "2007"
+  end: "2009"
+  details: []
+
+- id: bsc
+  degree: B.Sc. in Mathematics and Physics
+  institution: University of Gujrat
+  location: Gujrat, Pakistan
+  start: "2005"
+  end: "2007"
+  details: []

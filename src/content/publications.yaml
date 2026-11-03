@@ -1,0 +1,248 @@
+# ─────────────────────────────────────────────────────────────
+# PEER-REVIEWED JOURNAL ARTICLES
+# The site sorts these by year (newest first); within a year, the order here is kept.
+#
+# Fields:
+#   id          unique short name (any text, no spaces)
+#   year        publication year (number)
+#   authors     author list as you want it shown ("Hussain, R." is shown in bold)
+#   title       article title
+#   journal     journal name
+#   details     volume, pages / article number (optional)
+#   status      e.g. "Accepted" (optional)
+#   doi         DOI only, without "https://doi.org/" (optional)
+#   pmid        PubMed ID (optional)
+#   topic       imaging  → MRI / medical imaging
+#               physics  → physics & materials science (PhD and earlier)
+#   firstAuthor true if you are first author (used for "Selected publications" on the home page)
+#
+# Source: CV (Hussain_CV_simple.pdf, last updated Nov 3, 2026).
+# TODO: the ORCID record could not be fetched when this site was built. Cross-check this list
+#       against https://orcid.org/0000-0003-4406-2345 and fill in the DOIs marked TODO below
+#       (the CV does not list them). Entries without a DOI get a "Find article" search link.
+# ─────────────────────────────────────────────────────────────
+
+- id: masokano-2025-erjor
+  year: 2025
+  authors: Masokano, B. I., Hussain, R., Garrison, W. J., Borden, A., Costa, M. L., Willmering, M. M., Kramer, E. L., Cleveland, Z. I., and Walkup, L. L.
+  title: Does the Menstrual Cycle Influence Xenon Gas-Exchange MRI Metrics in Healthy Women?
+  journal: ERJ Open Research
+  status: Accepted
+  # doi: TODO
+  topic: imaging
+
+- id: casali-2026-nmrbiomed
+  year: 2026
+  authors: Casali, N., Brusaferri, A., Baselli, G., Fumagalli, S., Micotti, E., Forloni, G., Hussain, R., Rizzo, G., and Mastropietro, A.
+  title: A Comprehensive Framework for Uncertainty Quantification of Voxel-Wise Supervised Deep Learning Models in IVIM MRI
+  journal: NMR in Biomedicine
+  details: 39, e70227
+  # doi: TODO
+  topic: imaging
+
+- id: hussain-2026-acadrad
+  year: 2026
+  authors: Hussain, R., Bdaiwi, A. S., Plummer, J. W., Masokano, B. I., Willmering, M. M., Walkup, L. L., and Cleveland, Z. I.
+  title: Comparing Mean-anchored Generalized Linear Binning with Established Methods to Quantify Xenon-129 Ventilation Defect Percentage
+  journal: Academic Radiology
+  details: 33, 569–585
+  # doi: TODO
+  topic: imaging
+  firstAuthor: true
+
+- id: hussain-2025-annalsats
+  year: 2025
+  authors: Hussain, R., Masokano, B. I., Plummer, J. W., Bdaiwi, A. S., Willmering, M. M., Kramer, E. L., Walkup, L. L., and Cleveland, Z. I.
+  title: Xe MRI Detects Ongoing Ventilation Improvements in People with Cystic Fibrosis Receiving Highly Effective Modulator Therapy
+  journal: Annals of the American Thoracic Society
+  status: Accepted
+  doi: 10.1513/AnnalsATS.202505-497RL
+  topic: imaging
+  firstAuthor: true
+
+- id: hussain-2025-radcti
+  year: 2025
+  authors: Hussain, R., Plummer, J. W., Bdaiwi, A. S., Willmering, M. M., Kramer, E. L., Walkup, L. L., and Cleveland, Z. I.
+  title: Optimizing Xenon-129 Ventilation MRI in Cystic Fibrosis with Spiral Imaging and Flip-angle Correction
+  journal: "Radiology: Cardiothoracic Imaging"
+  details: 7, e240574
+  pmid: "41037010"
+  # doi: TODO
+  topic: imaging
+  firstAuthor: true
+
+- id: bdaiwi-2025-acadrad
+  year: 2025
+  authors: Bdaiwi, A. S., Willmering, M. M., Plummer, J. W., Hussain, R., Walkup, L. L., Woods, J. C., and Cleveland, Z. I.
+  title: Evaluating Stack-of-Stars and FLORET 3D Ultrashort Echo Time MRI to Assess Structural Pathology in Cystic Fibrosis Lung Disease
+  journal: Academic Radiology
+  status: Accepted
+  doi: 10.1016/j.acra.2025.09.036
+  topic: imaging
+
+- id: bdaiwi-2025-mrm-denoising
+  year: 2025
+  authors: Bdaiwi, A. S., Willmering, M. M., Hussain, R., Woods, J. C., Walkup, L. L., and Cleveland, Z. I.
+  title: Comparative evaluation of supervised and unsupervised deep learning strategies for denoising hyperpolarized ¹²⁹Xe lung MRI
+  journal: Magnetic Resonance in Medicine
+  status: Accepted
+  details: 1–19
+  # doi: TODO
+  topic: imaging
+
+- id: bdaiwi-2025-mrm-xipline
+  year: 2025
+  authors: Bdaiwi, A. S., Willmering, M. M., Plummer, J. W., Hussain, R., Roach, D. J., Parra-Robles, J., Niedbalski, P. J., Woods, J. C., Walkup, L. L., and Cleveland, Z. I.
+  title: "¹²⁹Xe Image Processing Pipeline: An open-source, graphical user interface application for the analysis of hyperpolarized ¹²⁹Xe MRI"
+  journal: Magnetic Resonance in Medicine
+  details: 93, 1220–1237
+  # doi: TODO
+  topic: imaging
+
+- id: plummer-2024-mrm-cs
+  year: 2024
+  authors: Plummer, J. W., Hussain, R., Bdaiwi, A. S., Soderlund, S. A., Hoyos, X., Lanier, J. M., Garrison, W. J., Parra-Robles, J., Willmering, M. M., Niedbalski, P. J., Cleveland, Z. I., and Walkup, L. L.
+  title: A Decay-Modeled Compressed Sensing Reconstruction Approach for non-Cartesian Hyperpolarized ¹²⁹Xe MRI
+  journal: Magnetic Resonance in Medicine
+  details: 92, 1363–1375
+  # doi: TODO
+  topic: imaging
+
+- id: plummer-2024-mrm-keyhole
+  year: 2024
+  authors: Plummer, J. W., Hussain, R., Bdaiwi, A. S., Costa, M. L., Willmering, M. M., Parra-Robles, J., Cleveland, Z. I., and Walkup, L. L.
+  title: Analytical corrections for B₁-inhomogeneity and signal decay in multi-slice 2D spiral hyperpolarized ¹²⁹Xe MRI using keyhole reconstruction
+  journal: Magnetic Resonance in Medicine
+  details: 92, 967–981
+  # doi: TODO
+  topic: imaging
+
+- id: moro-2023-jneurotrauma
+  year: 2023
+  authors: Moro, F., Lisi, I., Tolomeo, D., Vegliante, G., Pascente, R., Mazzone, E., Hussain, R., Micotti, E., Dallmeier, J., Pischiutta, F., Bianchi, E., Chiesa, R., Wang, K. K., and Zanier, E. R.
+  title: Acute Blood Levels of Neurofilament Light Indicate One-Year White Matter Pathology and Functional Impairment in Repetitive Mild Traumatic Brain Injured Mice
+  journal: Journal of Neurotrauma
+  details: 40, 1144–1163
+  # doi: TODO
+  topic: imaging
+
+- id: hussain-2021-prb
+  year: 2021
+  authors: Hussain, R., Prando, G., Selter, S., Aswartham, S., Büchner, B., and Carretta, P.
+  title: Magnetically induced local lattice anomalies and low-frequency fluctuations in the Mott insulator La₂O₃Fe₂Se₂
+  journal: Physical Review B
+  details: "103"
+  doi: 10.1103/physrevb.103.l081105
+  topic: physics
+  firstAuthor: true
+
+- id: ali-2021-microchim
+  year: 2021
+  authors: Ali, I., Hussain, R., Louis, H., Bokhari, S. W., and Iqabl, M. Z.
+  title: In situ reduced graphene-based aerogels embedded with gold nanoparticles for real-time humidity sensing and toxic dyes elimination
+  journal: Microchimica Acta
+  details: "188"
+  doi: 10.1007/s00604-020-04658-0
+  topic: physics
+
+- id: chiesa-2020-prb
+  year: 2020
+  authors: Chiesa, A. et al. (incl. Hussain, R.)  # TODO: full author list not given in the CV
+  title: Understanding Magnetic Relaxation in Single-ion Magnets with high blocking temperature
+  journal: Physical Review B
+  details: "101"
+  doi: 10.1103/physrevb.101.174402
+  topic: physics
+
+- id: hussain-2019-prb
+  year: 2019
+  authors: Hussain, R., Cugini, F., Baldini, S., Porcari, G., Amadè, N. S., Miao, X., van Dijk, N. H., Brück, E., Solzi, M., Renzi, R. D., and Allodi, G.
+  title: Ubiquitous first-order transitions and site-selective vanishing of the magnetic moment in giant magnetocaloric MnFeSiP alloys detected by ⁵⁵Mn NMR
+  journal: Physical Review B
+  details: "100"
+  doi: 10.1103/physrevb.100.104439
+  topic: physics
+  firstAuthor: true
+
+- id: hussain-2018-jacs
+  year: 2018
+  authors: Hussain, R., Allodi, G., Chiesa, A., Garlatti, E., Mitcov, D., Konstantatos, A., Pedersen, K. S., Renzi, R. D., Piligkos, S., and Carretta, S.
+  title: Coherent Manipulation of a Molecular Ln-Based Nuclear Qudit Coupled to an Electron Qubit
+  journal: Journal of the American Chemical Society
+  details: 140, 9814–9818
+  # doi: TODO
+  topic: physics
+  firstAuthor: true
+
+- id: giansiracusa-2018-jacs
+  year: 2018
+  authors: Giansiracusa, M. J., Moreno-Pineda, E., Hussain, R., Marx, R., Prada, M. M., Neugebauer, P., Al-Badran, S., Collison, D., Tuna, F., van Slageren, J., Carretta, S., Guidi, T., McInnes, E. J. L., Winpenny, R. E. P., and Chilton, N. F.
+  title: "Measurement of Magnetic Exchange in Asymmetric Lanthanide Dimetallics: Toward a Transferable Theoretical Framework"
+  journal: Journal of the American Chemical Society
+  details: 140, 2504–2513
+  # doi: TODO
+  topic: physics
+
+- id: farooq-2016-jnn
+  year: 2016
+  authors: Farooq, M. H., Hussain, R., Iqbal, M. Z., Shah, M., Rana, U. A., and Khan, S. U.-D.
+  title: Fabrication and Magnetic Properties of Sn-Doped ZnO Microstructures via Hydrothermal Method
+  journal: Journal of Nanoscience and Nanotechnology
+  details: 16, 898–902
+  # doi: TODO
+  topic: physics
+
+- id: nazar-2015-jpoc
+  year: 2015
+  authors: Nazar, M. F., Badshah, A., Mahmood, A., Zafar, M. N., Janjua, M. R. S. A., Raza, M. A., and Hussain, R.
+  title: Synthesis, spectroscopic characterization, and computed optical analysis of green fluorescent cyclohexenone derivatives
+  journal: Journal of Physical Organic Chemistry
+  details: 29, 152–160
+  # doi: TODO
+  topic: physics
+
+- id: nabi-2014-nnl
+  year: 2014
+  authors: Nabi, A., Hussain, R., Farooq, M. H., and Zubair, M.
+  title: Experimental and Theoretical Investigation of Ferromagnetism in Mn-Doped SnO
+  journal: Nanoscience and Nanotechnology Letters
+  details: 6, 959–964
+  # doi: TODO
+  topic: physics
+
+- id: farooq-2014-matlett
+  year: 2014
+  authors: Farooq, M. H., Hussain, R., Zhang, L., Aslam, I., Tanveer, M., Shah, M., and Iqbal, M. Z.
+  title: Fabrication, characterization and magnetic properties of Mn-doped SnO nanostructures via hydrothermal method
+  journal: Materials Letters
+  details: 131, 350–353
+  # doi: TODO
+  topic: physics
+
+- id: iqbal-2014-asem
+  year: 2014
+  authors: Iqbal, M. Z., Wang, F., Hussain, R., Iqbal, T., Ali, I., Rafique, M. Y., and Ali, S.
+  title: Synthesis and Characterization of SnO₂ Nanorods for Energy Storage Applications
+  journal: Advanced Science, Engineering and Medicine
+  details: 6, 791–796
+  # doi: TODO
+  topic: physics
+
+- id: hussain-2014-ntrp
+  year: 2014
+  authors: Hussain, R., Mirza, S., and Mirza, N.
+  title: The study of response of wide band gap semiconductor detectors using the Geant4
+  journal: Nuclear Technology and Radiation Protection
+  details: 29, 242–248
+  # doi: TODO
+  topic: physics
+  firstAuthor: true
+
+- id: iqbal-2014-matfocus
+  year: 2014
+  authors: Iqbal, M. Z., Wang, F., Hussain, R., Rafique, M. Y., Ali, S., and Ali, I.
+  title: Time-Dependent Growth and Optical Properties of Stannous Oxide Architectures
+  journal: Materials Focus
+  details: 3, 92–97
+  # doi: TODO
+  topic: physics

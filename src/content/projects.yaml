@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────
+# SOFTWARE PROJECTS
+#   repo:   leave empty ("") while the repository is private — the card then shows
+#           "Repository private / coming soon". Paste the GitHub URL when it is public.
+#   status: optional short label shown on the card
+#   links:  optional extra links, e.g.  - { label: Docs, url: https://... }
+# TODO: the descriptions below are short placeholders based only on the project names —
+#       please review and expand them (what it does, who uses it, tech used).
+# ─────────────────────────────────────────────────────────────
+- id: pulseq-starter
+  name: Pulseq starter sequences
+  description: A set of starter MRI pulse sequences written with Pulseq, the open-source, vendor-neutral framework for programming MRI sequences — a starting point for building and testing new sequences.
+  tags: [Pulseq, Pulse sequences, MRI]
+  repo: ""  # TODO: add repository URL
+
+- id: low-field-translator
+  name: Low-field protocol translator
+  description: A tool for translating MRI protocols to low-field (0.55T) scanners.
+  tags: [Low-field MRI, 0.55T, Protocols]
+  repo: ""  # TODO: add repository URL (private)
+
+- id: xe-lab-ops
+  name: Xe lab operations app
+  description: An application supporting the day-to-day operations of a hyperpolarized ¹²⁹Xe MRI lab.
+  tags: [¹²⁹Xe MRI, Lab operations, App]
+  repo: ""  # TODO: add repository URL (private)
+
+- id: mri-montage
+  name: MRI montage tool
+  description: A tool for assembling MRI image slices into montage figures for review and presentation.
+  tags: [Image analysis, Visualization]
+  repo: ""  # TODO: add repository URL

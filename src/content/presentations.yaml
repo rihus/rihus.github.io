@@ -1,0 +1,115 @@
+# ─────────────────────────────────────────────────────────────
+# TALKS AND POSTERS  (shown on the Publications page, newest first by "year")
+# type: oral | poster
+# ─────────────────────────────────────────────────────────────
+- id: ats-2025-oral
+  type: oral
+  date: May 16–21, 2025
+  year: 2025
+  title: Continued Lung Ventilation Improvement in People With Cystic Fibrosis Receiving Highly Effective Modulator Therapy
+  event: American Thoracic Society (ATS) International Conference
+  location: San Francisco, CA, USA
+
+- id: ismrm-2025-oral
+  type: oral
+  date: May 10–15, 2025
+  year: 2025
+  title: Median-anchored Generalized Linear Binning vs Conventional Methods to Quantify ¹²⁹Xe Lung Ventilation MRI
+  event: Annual Meeting of the International Society for Magnetic Resonance in Medicine (ISMRM)
+  location: Honolulu, HI, USA
+
+- id: ovcfc-2025-oral
+  type: oral
+  date: March 16–18, 2025
+  year: 2025
+  title: Lung Function Tracking in People with Cystic Fibrosis on ETI Therapy using Xenon MRI
+  event: Ohio Valley CF Consortium
+  location: Columbus, OH, USA
+
+- id: cchmc-2024-oral
+  type: oral
+  date: December 4, 2024
+  year: 2024
+  title: Hyperpolarized Xenon Ventilation MRI in people with Cystic Fibrosis on Highly Effective Modulator Therapy
+  event: Cincinnati Children's / University of Cincinnati CF Research Seminar
+  location: Cincinnati, OH, USA
+
+- id: ats-2024-poster-aging
+  type: poster
+  date: May 17–22, 2024
+  year: 2024
+  title: Addressing Healthy Aging Variations in Ventilation from Childhood to Older Age Using Xenon MRI
+  event: American Thoracic Society (ATS) International Conference
+  location: San Diego, CA, USA
+
+- id: ats-2024-poster-bias
+  type: poster
+  date: May 17–22, 2024
+  year: 2024
+  title: Improved Quantification of Ventilation Heterogeneity in Hyperpolarized Xenon MRI using Physics-rooted Bias-field Correction
+  event: American Thoracic Society (ATS) International Conference
+  location: San Diego, CA, USA
+
+- id: ismrm-2023-poster
+  type: poster
+  date: June 3–8, 2023
+  year: 2023
+  title: Improved efficiency and quantitative accuracy in hyperpolarized ¹²⁹Xe ventilation imaging using 2D spiral acquisition
+  event: Annual Meeting of the International Society for Magnetic Resonance in Medicine (ISMRM)
+  location: Toronto, Canada
+
+- id: cchmc-2023-poster
+  type: poster
+  date: May 5, 2023
+  year: 2023
+  title: "Physics works: Improved functional lung MR images with perks"
+  event: First Annual CCHMC Research Symposium
+  location: Cincinnati, OH, USA
+
+- id: superfox-2020-oral
+  type: oral
+  date: February 10–12, 2020
+  year: 2020
+  title: "Magnetic ordering and spin dynamics in La₂O₃Fe₂Se₂: a ¹³⁹La NQR study"
+  event: Conference on Superconductivity and Functional Oxides (SuperFOx2020)
+  location: Santa Margherita – Genoa, Italy
+
+- id: aimagn-2019-oral
+  type: oral
+  date: January 30 – February 1, 2019
+  year: 2019
+  title: Coherent manipulation of ¹⁷³Yb nuclear spins coupled to Yb³⁺ qubit in Yb(trensal)
+  event: AIMAGN's 6th Italian Conference on Magnetism
+  location: Messina, Italy
+
+- id: sisn-2018-oral
+  type: oral
+  date: July 4–6, 2018
+  year: 2018
+  title: "Magnetic exchange and crystal field excitations of asymmetric Lanthanide dimers: An INS insight"
+  event: SISN XXIX Congresso Annuale, Italian Neutron Scattering Conference
+  location: Parma, Italy
+
+- id: molspin-2018-oral
+  type: oral
+  date: May 25, 2018
+  year: 2018
+  title: Yb(trensal) as a Nuclear Qudit Coupled to an Electron Qubit
+  event: Molspin COST WG3 Workshop on Quantum Spin Science & Technologies
+  location: Puerto de Santiago, Tenerife, Spain
+
+- id: berlin-2018-poster
+  type: poster
+  date: March 1–9, 2018
+  year: 2018
+  title: "Let's view it from the nucleus: Yb Single Ion Magnet for QIP"
+  event: 38th Berlin School on Neutron Scattering, HZB Berlin
+  location: Berlin, Germany
+
+- id: pinstech-2014-oral
+  type: oral
+  date: June 3–5, 2014
+  year: 2014
+  title: "Stannous Oxide Architectures for Energy Storage Applications: A Hydrothermal Route"
+  event: Conference on Frontiers of Nanoscience and Nanotechnology, Physics Division, PINSTECH
+  location: Islamabad, Pakistan
