@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const areas = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(areas.map(async (a) => ({ a, Content: (await render(a)).Content })));
+---
+
+<Base title="Research" description="Research areas of Riaz Hussain, PhD, explained in plain language: hyperpolarized xenon-129 lung MRI, image acquisition and reconstruction, quantitative analysis, low-field MRI and pulse sequences.">
+  <div class="container page">
+    <h1>Research</h1>
+    <p class="page-intro">
+      An overview of my research for non-specialists. For the technical details, see the{' '}
+      <a href="/publications/">publications</a>.
+    </p>
+
+    <nav class="toc" aria-label="Research areas">
+      <ul class="chips">
+        {areas.map((a) => <li><a class="chip" href={`#${a.id}`}>{a.data.title}</a></li>)}
+      </ul>
+    </nav>
+
+    {
+      rendered.map(({ a, Content }, i) => (
+        <article id={a.id} class:list={['area', { flip: i % 2 === 1 }]}>
+          <figure>
+            <img src={a.data.image} alt={a.data.imageAlt} width="800" height="450" loading={i === 0 ? 'eager' : 'lazy'} />
+            {a.data.imageCaption && <figcaption>{a.data.imageCaption}</figcaption>}
+          </figure>
+          <div>
+            <h2>{a.data.title}</h2>
+            <p class="lead">{a.data.summary}</p>
+            <div class="prose"><Content /></div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .toc {
+    margin-bottom: 1rem;
+  }
+  .toc a {
+    text-decoration: none;
+  }
+  .toc a:hover {
+    color: var(--accent);
+  }
+  .area {
+    display: grid;
+    gap: 1.25rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .area:last-child {
+    border-bottom: 0;
+  }
+  @media (min-width: 900px) {
+    .area {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .area.flip figure {
+      order: 2;
+    }
+  }
+  .area h2 {
+    margin-top: 0;
+  }
+  figure {
+    margin: 0;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 0;
+  }
+</style>

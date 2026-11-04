@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import { getProfile, getPublications, getOrdered } from '../lib/content';
+
+const p = (await getProfile()).data;
+const pubs = await getPublications();
+const years = [...new Set(pubs.map((x) => x.data.year))];
+const counts = {
+  all: pubs.length,
+  imaging: pubs.filter((x) => x.data.topic === 'imaging').length,
+  physics: pubs.filter((x) => x.data.topic === 'physics').length,
+};
+
+const presentations = (await getOrdered('presentations')).sort(
+  (a, b) => b.data.year - a.data.year || a.data.order - b.data.order,
+);
+const talks = presentations.filter((t) => t.data.type === 'oral');
+const posters = presentations.filter((t) => t.data.type === 'poster');
+---
+
+<Base title="Publications" description={`Peer-reviewed publications (${pubs.length}) and conference presentations by Riaz Hussain, PhD, including hyperpolarized ¹²⁹Xe lung MRI research in Magnetic Resonance in Medicine, Academic Radiology and Radiology: Cardiothoracic Imaging.`}>
+  <div class="container page pubs-page">
+    <h1>Publications</h1>
+    <p class="page-intro">
+      {counts.all} peer-reviewed journal articles, newest first. My name is shown in bold.
+      See also my{' '}
+      {p.links.scholar && <a href={p.links.scholar} rel="noopener">Google Scholar</a>}
+      {p.links.scholar && p.links.orcid && ' and '}
+      {p.links.orcid && <a href={p.links.orcid} rel="noopener">ORCID</a>}{' '}
+      profiles.
+    </p>
+
+    <fieldset class="filter">
+      <legend class="visually-hidden">Filter publications by topic</legend>
+      <input type="radio" name="topic" id="f-all" checked />
+      <label for="f-all">All ({counts.all})</label>
+      <input type="radio" name="topic" id="f-imaging" />
+      <label for="f-imaging">MRI &amp; medical imaging ({counts.imaging})</label>
+      <input type="radio" name="topic" id="f-physics" />
+      <label for="f-physics">Physics &amp; materials ({counts.physics})</label>
+    </fieldset>
+
+    <div class="pub-years">
+      {
+        years.map((y) => {
+          const items = pubs.filter((x) => x.data.year === y);
+          return (
+            <section class="year-group" data-topics={[...new Set(items.map((i) => i.data.topic))].join(' ')}>
+              <h2 class="year">{y}</h2>
+              <ol class="pub-list">
+                {items.map((pub) => <PubItem pub={pub} />)}
+              </ol>
+            </section>
+          );
+        })
+      }
+    </div>
+
+    <h2 id="presentations">Conference presentations</h2>
+    <div class="grid grid-2">
+      <section>
+        <h3 class="sub">Oral presentations ({talks.length})</h3>
+        <ul class="talks">
+          {talks.map((t) => <li><p class="talk-title">“{t.data.title}”</p><p class="muted">{t.data.event}{t.data.location && <>, {t.data.location}</>} · {t.data.date}</p></li>)}
+        </ul>
+      </section>
+      <section>
+        <h3 class="sub">Posters ({posters.length})</h3>
+        <ul class="talks">
+          {posters.map((t) => <li><p class="talk-title">“{t.data.title}”</p><p class="muted">{t.data.event}{t.data.location && <>, {t.data.location}</>} · {t.data.date}</p></li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .filter {
+    border: 0;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .filter input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .filter label {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: var(--surface);
+  }
+  .filter input:checked + label {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+  .filter input:focus-visible + label {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .pubs-page:has(#f-imaging:checked) :global(.pub[data-topic='physics']),
+  .pubs-page:has(#f-physics:checked) :global(.pub[data-topic='imaging']),
+  .pubs-page:has(#f-imaging:checked) .year-group:not([data-topics~='imaging']),
+  .pubs-page:has(#f-physics:checked) .year-group:not([data-topics~='physics']) {
+    display: none;
+  }
+  .year {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin: 1.75rem 0 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  .pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sub {
+    margin: 0 0 0.75rem;
+  }
+  .talks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .talks li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .talks p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .talk-title {
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const groups = (await getCollection('skills')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Skills" description="Technical skills of Riaz Hussain, PhD: MRI physics and hyperpolarized ¹²⁹Xe MRI, Siemens 3T and 0.55T scanners, Python, MATLAB, R, FSL, ANTs, ITK-SNAP and SPM.">
+  <div class="container page">
+    <h1>Skills</h1>
+    <p class="page-intro">Technical skills, grouped by area.</p>
+    <div class="grid grid-2">
+      {
+        groups.map((g) => (
+          <section class="card">
+            <h2>{g.data.group}</h2>
+            <ul class="chips">
+              {g.data.items.map((s) => <li class="chip">{s}</li>)}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+  }
+  .chip {
+    font-size: 0.9rem;
+  }
+</style>

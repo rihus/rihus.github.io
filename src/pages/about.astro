@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import { getEntry, render } from 'astro:content';
+import { getOrdered } from '../lib/content';
+
+const about = await getEntry('about', 'about');
+if (!about) throw new Error('src/content/about.md is missing');
+const { Content } = await render(about);
+
+const experience = await getOrdered('experience'); // file order = page order
+const education = await getOrdered('education');
+const honors = await getOrdered('honors');
+const awards = honors.filter((h) => h.data.category === 'award');
+const teaching = honors.filter((h) => h.data.category === 'teaching');
+const memberships = honors.filter((h) => h.data.category === 'membership');
+---
+
+<Base title="About & Experience" description="Background, research positions, education and awards of Riaz Hussain, PhD — MRI physicist and research scientist.">
+  <div class="container page">
+    <h1>{about.data.title}</h1>
+    <div class="prose"><Content /></div>
+
+    <h2 id="experience">Experience</h2>
+    <ol class="timeline">
+      {
+        experience.map((e) => (
+          <li>
+            <p class="when">{e.data.start}–{e.data.end}</p>
+            <div>
+              <h3>{e.data.role}</h3>
+              <p class="org">{e.data.organization}</p>
+              {e.data.location && <p class="muted loc">{e.data.location}</p>}
+              {e.data.highlights.length > 0 && (
+                <ul class="highlights">
+                  {e.data.highlights.map((h) => <li>{h}</li>)}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <h2 id="education">Education</h2>
+    <ol class="timeline">
+      {
+        education.map((e) => (
+          <li>
+            <p class="when">{e.data.start}–{e.data.end}</p>
+            <div>
+              <h3>{e.data.degree}</h3>
+              <p class="org">{e.data.institution}</p>
+              {e.data.location && <p class="muted loc">{e.data.location}</p>}
+              {e.data.details.length > 0 && (
+                <ul class="highlights">
+                  {e.data.details.map((d) => <li>{d}</li>)}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="grid grid-2 extras">
+      <section class="card">
+        <h2 id="awards">Scholarships & awards</h2>
+        <ul class="plain">
+          {awards.map((a) => <li><strong>{a.data.title}</strong>{a.data.years && <span class="muted"> · {a.data.years}</span>}{a.data.detail && <><br /><span class="muted">{a.data.detail}</span></>}</li>)}
+        </ul>
+      </section>
+      <section class="card">
+        <h2 id="teaching">Teaching</h2>
+        <ul class="plain">
+          {teaching.map((a) => <li><strong>{a.data.title}</strong>{a.data.years && <span class="muted"> · {a.data.years}</span>}{a.data.detail && <><br /><span class="muted">{a.data.detail}</span></>}</li>)}
+        </ul>
+        <h2 id="memberships">Memberships</h2>
+        <ul class="plain">
+          {memberships.map((a) => <li>{a.data.title}</li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--border);
+  }
+  .timeline > li {
+    position: relative;
+    display: grid;
+    gap: 0.15rem 1.5rem;
+    padding: 0 0 1.5rem 1.25rem;
+  }
+  .timeline > li::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 0.45rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  @media (min-width: 720px) {
+    .timeline > li {
+      grid-template-columns: 8rem minmax(0, 1fr);
+    }
+  }
+  .when {
+    margin: 0;
+    font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .org,
+  .loc {
+    margin: 0;
+  }
+  .loc {
+    font-size: 0.93rem;
+  }
+  .highlights {
+    margin: 0.4rem 0 0;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+  }
+  .extras {
+    margin-top: 2rem;
+  }
+  .extras h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+  .extras h2 + ul {
+    margin-bottom: 1.5rem;
+  }
+  .plain {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plain li {
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+  }
+</style>

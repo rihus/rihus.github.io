@@ -1,0 +1,47 @@
+# ─────────────────────────────────────────────────────────────
+# AWARDS, TEACHING AND MEMBERSHIPS
+# category must be one of: award, teaching, membership
+# ─────────────────────────────────────────────────────────────
+- id: ats-2025
+  category: award
+  years: "2025"
+  title: Abstract Scholarship
+  detail: Respiratory Structure and Function Assembly, American Thoracic Society
+
+- id: isis-2017
+  category: award
+  years: "2017"
+  title: Research Funding
+  detail: STFC's ISIS Neutron and Muon Facility, Oxford, UK
+
+- id: phd-scholarship
+  category: award
+  years: 2015–2018
+  title: PhD Scholarship
+  detail: Italian Ministry of Education, Universities, and Research — University of Parma, Italy
+
+- id: mphil-fellowship
+  category: award
+  years: 2010–2012
+  title: M.Phil. Fellowship
+  detail: Pakistan Institute of Engineering and Applied Sciences, Islamabad, Pakistan
+
+- id: ta-parma
+  category: teaching
+  years: Spring 2018
+  title: "Teaching Assistant: NMR Lab"
+  detail: Physics Department, University of Parma, Italy
+
+- id: lecturer-rsit
+  category: teaching
+  years: 2009–2010
+  title: "Lecturer: Applied Physics and Applied Mechanics"
+  detail: Rawalpindi Swedish Institute of Technology, Rawalpindi, Pakistan
+
+- id: ats
+  category: membership
+  title: American Thoracic Society (ATS)
+
+- id: ismrm
+  category: membership
+  title: International Society for Magnetic Resonance in Medicine (ISMRM)

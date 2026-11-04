@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Image placeholder: 0.55T / pulse sequence">
+  <rect width="800" height="450" fill="#e2e8f0"/>
+  <g fill="none" stroke="#94a3b8" stroke-width="2">
+    <ellipse cx="320" cy="210" rx="70" ry="120"/>
+    <ellipse cx="480" cy="210" rx="70" ry="120"/>
+    <path d="M400 70v80m0 0l-60 40m60-40l60 40"/>
+  </g>
+  <text x="400" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" fill="#475569">Image placeholder</text>
+  <text x="400" y="414" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#64748b">0.55T / pulse sequence</text>
+</svg>

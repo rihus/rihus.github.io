@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────
+# SKILLS  (groups appear in the order listed here; add/remove items freely)
+# Sources: CV "Technical Skills" section, the expertise listed for this site,
+# and methods from first-author publications.
+# ─────────────────────────────────────────────────────────────
+- id: mri-physics
+  group: MRI physics & methods
+  items:
+    - Hyperpolarized ¹²⁹Xe lung MRI (ventilation imaging)
+    - Pulse sequence development
+    - Spiral and non-Cartesian acquisition
+    - Flip-angle and B₁-inhomogeneity correction
+    - Quantification of ventilation defect percentage (VDP)
+    - Low-field (0.55T) MRI
+    - NMR / NQR spectroscopy
+    # TODO: add any further methods you want listed (e.g. specific sequence types)
+
+- id: scanners
+  group: Scanners & experimental techniques
+  items:
+    - Siemens 3T MRI
+    - Siemens 0.55T (low-field) MRI
+    - Clinical and preclinical MRI
+    - NMR / NQR
+    - Muon spin spectroscopy (µSR)
+    - Neutron scattering
+    # TODO: add exact scanner models / software versions if you want them listed
+
+- id: programming
+  group: Programming
+  items:
+    - Python
+    - MATLAB
+    - R
+    - LaTeX
+    - Pulseq (vendor-neutral pulse sequence programming)  # from the Projects list; TODO: confirm wording
+
+- id: analysis
+  group: Image analysis tools
+  items:
+    - FSL
+    - ANTs
+    - ITK-SNAP
+    - SPM
+
+- id: training
+  group: Training
+  items:
+    - Philips Pulse Programming Courses

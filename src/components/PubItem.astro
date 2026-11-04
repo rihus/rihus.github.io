@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { doiUrl, highlightAuthor } from '../lib/content';
+
+interface Props {
+  pub: CollectionEntry<'publications'>;
+}
+const { pub } = Astro.props;
+const d = pub.data;
+const scholarSearch = `https://scholar.google.com/scholar?q=${encodeURIComponent(d.title)}`;
+---
+
+<li class="pub" data-topic={d.topic}>
+  <p class="pub-title">{d.title}</p>
+  <p class="pub-authors" set:html={highlightAuthor(d.authors)} />
+  <p class="pub-venue">
+    <em>{d.journal}</em>{d.details && <>, {d.details}</>} ({d.year}){d.status && <> · <span class="status">{d.status}</span></>}
+  </p>
+  <p class="pub-links">
+    {d.doi && <a href={doiUrl(d.doi)} rel="noopener">DOI: {d.doi}</a>}
+    {d.pmid && <a href={`https://pubmed.ncbi.nlm.nih.gov/${d.pmid}/`} rel="noopener">PubMed: {d.pmid}</a>}
+    {d.url && <a href={d.url} rel="noopener">Article</a>}
+    {!d.doi && !d.pmid && !d.url && <a href={scholarSearch} rel="noopener">Find article</a>}
+  </p>
+</li>
+
+<style>
+  .pub {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub p {
+    margin: 0;
+  }
+  .pub-title {
+    font-weight: 650;
+    line-height: 1.4;
+  }
+  .pub-authors {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    margin-top: 0.2rem !important;
+  }
+  .pub-authors :global(strong) {
+    color: var(--text);
+  }
+  .pub-venue {
+    font-size: 0.93rem;
+  }
+  .status {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.3rem !important;
+  }
+</style>

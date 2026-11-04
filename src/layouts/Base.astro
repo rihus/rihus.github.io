@@ -1,0 +1,307 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Icon from '../components/Icon.astro';
+import { getProfile } from '../lib/content';
+
+interface Props {
+  /** Page title (the site name is appended automatically). Omit on the home page. */
+  title?: string;
+  description?: string;
+  type?: 'website' | 'profile';
+  jsonLd?: Record<string, unknown>;
+  /** Hide this page from search engines (used by the 404 page). */
+  noindex?: boolean;
+}
+
+const profile = await getProfile();
+const p = profile.data;
+const { title, description = p.seoDescription, type = 'website', jsonLd, noindex } = Astro.props;
+const fullTitle = title ? `${title} | ${p.name}` : `${p.name} — ${p.title}`;
+
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/research/', label: 'Research' },
+  { href: '/publications/', label: 'Publications' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/skills/', label: 'Skills' },
+  { href: '/cv/', label: 'CV' },
+];
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
+    <meta name="author" content={p.name} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Seo
+      title={fullTitle}
+      description={description}
+      siteName={p.name}
+      type={type}
+      imageAlt={`${p.name} — ${p.title}`}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
+    <script is:inline>
+      // Apply saved theme before paint to avoid a flash.
+      (function () {
+        document.documentElement.classList.add('js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">{p.name}</a>
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
+            <span class="icon-sun"><Icon name="sun" /></span>
+            <span class="icon-moon"><Icon name="moon" /></span>
+          </button>
+          <button
+            class="icon-btn menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <Icon name="menu" />
+          </button>
+        </div>
+        <nav id="site-nav" class="site-nav" aria-label="Main">
+          <ul>
+            {
+              nav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© {year} {p.name}</p>
+        <ul class="footer-links">
+          {p.links.linkedin && <li><a href={p.links.linkedin} rel="me noopener">LinkedIn</a></li>}
+          {p.links.scholar && <li><a href={p.links.scholar} rel="me noopener">Google Scholar</a></li>}
+          {p.links.orcid && <li><a href={p.links.orcid} rel="me noopener">ORCID</a></li>}
+          {p.links.github && <li><a href={p.links.github} rel="me noopener">GitHub</a></li>}
+          <li><a href={`mailto:${p.email}`}>Email</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+      const root = document.documentElement;
+      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+      const current = () =>
+        root.dataset.theme ??
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const label = () =>
+        toggle?.setAttribute(
+          'aria-label',
+          current() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+        );
+      label();
+      toggle?.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem('theme', next);
+        } catch {}
+        label();
+      });
+
+      const menuBtn = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const nav = document.getElementById('site-nav');
+      menuBtn?.addEventListener('click', () => {
+        const open = menuBtn.getAttribute('aria-expanded') !== 'true';
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        nav?.classList.toggle('open', open);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    min-height: 3.75rem;
+  }
+  .brand {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.05rem;
+    margin-right: auto;
+  }
+  .header-actions {
+    display: flex;
+    gap: 0.25rem;
+    order: 2;
+  }
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .icon-btn:hover {
+    border-color: var(--border);
+  }
+  .icon-btn :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .icon-moon {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .icon-sun {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .icon-moon {
+    display: inline-grid;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .icon-sun {
+      display: none;
+    }
+    :global(:root:not([data-theme='light'])) .icon-moon {
+      display: inline-grid;
+    }
+  }
+
+  .site-nav {
+    order: 3;
+    width: 100%;
+  }
+  .site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .site-nav a {
+    display: block;
+    padding: 0.6rem 0.25rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.97rem;
+  }
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    color: var(--accent);
+  }
+  .site-nav a[aria-current='page'] {
+    font-weight: 700;
+  }
+  /* With JS, the mobile menu starts collapsed; without JS it is always visible. */
+  :global(.js) .site-nav {
+    display: none;
+  }
+  :global(.js) .site-nav.open {
+    display: block;
+  }
+
+  @media (min-width: 860px) {
+    .menu-toggle {
+      display: none;
+    }
+    .site-nav,
+    :global(.js) .site-nav {
+      display: block;
+      order: 1;
+      width: auto;
+    }
+    .header-actions {
+      order: 2;
+    }
+    .site-nav ul {
+      flex-direction: row;
+      gap: 0.25rem;
+      padding: 0;
+    }
+    .site-nav a {
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+    }
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  .footer-inner p {
+    margin: 0;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+</style>
